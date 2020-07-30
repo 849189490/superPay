@@ -2,9 +2,9 @@
 	<div class="rec">
 		<div v-for="item in recommend" :key="item.num" class="list">
 			<a :href="item.src">
-				<img :src="item.image" alt="图片失效">
-				<div>{{item.title}}</div>
+				<img :src="item.image" alt="图片失效" @load="recommendImgLoad">
 			</a>
+			<div>{{item.title}}</div>
 		</div>
 	</div>
 </template>
@@ -18,6 +18,11 @@
 				default() {
 					return []
 				}
+			}
+		},
+		methods:{
+			recommendImgLoad() {
+				this.$emit('recommendImgLoad')
 			}
 		}
 	}

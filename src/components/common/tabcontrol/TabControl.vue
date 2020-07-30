@@ -1,5 +1,5 @@
 <template>
-	<div class="tab">
+	<div class="tab" ref="tabControl">
 		<div v-for="(value,index) in controlList" :key="index" 
 				 @click="controlListClick(index)" 
 				 :class="{active: currentIndex === index}">
@@ -21,7 +21,8 @@
 		},
 		data() {
 			return{
-				currentIndex:0
+				currentIndex:0,
+				tabTop:0
 			}
 		},
 		methods:{
@@ -42,6 +43,7 @@
 		padding: 6px 0;
 		font-size: 12px;
 		text-align: center;
+		background-color: #FFFFFF;
 	}
 	.active span {
 		padding: 8px 8px;

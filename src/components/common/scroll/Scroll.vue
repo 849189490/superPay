@@ -1,6 +1,9 @@
 <template>
-  <div ref="wrapper">
+  <div class="wrapper" ref="wrapper">
+		<div class="content">
+			
     <slot></slot>
+		</div>
   </div>
 </template>
 
@@ -10,9 +13,10 @@
 	export default {
 		name: "Scroll",
     props: {
+			//决定是否监听滚动位置
 		  probeType: {
 		    type: Number,
-        default: 1
+        default: 3
       },
       data: {
 		    type: Array,
@@ -22,8 +26,12 @@
       },
       pullUpLoad: {
 		    type: Boolean,
-        default: false
-      }
+        default: true
+      },
+			pulldown: {
+				type:Boolean,
+				default: false
+			}
     },
     data() {
 		  return {
@@ -43,26 +51,39 @@
           pullUpLoad: this.pullUpLoad
         })
 
-        // 2.将监听事件回调
+        // 2.将监听事件回调/位置监听
         this.scroll.on('scroll', pos => {
           this.$emit('scroll', pos)
         })
 
-        // 3.监听上拉到底部
+        // 3.监听上拉到底部，上拉加载
         this.scroll.on('pullingUp', () => {
-          console.log('上拉加载');
           this.$emit('pullingUp')
         })
+				
+				//4.下拉刷新
+				this.scroll.on('touchEnd', pos => {
+					if(pos.y > 50) {
+						this.$emit('pullingDown')
+					}
+				})
       },
+			//监听图片加载刷新可滑动区域
       refresh() {
         this.scroll && this.scroll.refresh && this.scroll.refresh()
       },
+			//监听下拉刷新结束
       finishPullUp() {
 		    this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp()
       },
+			//返回顶部实现
       scrollTo(x, y, time) {
 		    this.scroll && this.scroll.scrollTo && this.scroll.scrollTo(x, y, time)
-      }
+      },
+			//获取Y轴位置
+			getScrollY() {
+				return this.scroll ? this.scroll.y : 0
+			}
     },
     watch: {
 		  data() {

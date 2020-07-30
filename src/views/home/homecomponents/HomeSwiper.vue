@@ -3,7 +3,7 @@
 		<swiper>
 			<swiper-item v-for="(item,index) in result" :key = "index">
 				<a :href="item.num"></a>
-				<img :src="item.url">
+				<img :src="item.url" @load="imageLoad">
 			</swiper-item>
 		</swiper>
 	</div>
@@ -19,6 +19,11 @@
 				default() {
 					return []
 				}
+			}
+		},
+		methods:{
+			imageLoad() {
+				this.$emit('swiperImageLoad')
 			}
 		},
 		components:{
