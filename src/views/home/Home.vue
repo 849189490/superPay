@@ -3,6 +3,11 @@
 		<nav-bar class="home-nav">
 			<div slot = 'center'>首页</div>
 		</nav-bar>
+		<van-loading type="spinner" 
+								 v-show="isRefresh"
+								 vertical
+								 color="#42B983"
+								 class="loading">加载中...</van-loading>
 		<tab-control @controlListClick="controlListClick"
 								 class="tabcontrol"
 								 v-show="tabIsActive"
@@ -13,9 +18,6 @@
 						@pullingUp="pullingUp"
 						:pulldown="true"
 						@pullingDown="pullingDown">
-			<animation-refresh v-show="isRefresh" 
-												 class="animationrefresh"
-												 :isShow="isRefresh"></animation-refresh>
 			<home-swiper :result="result" @swiperImageLoad="imageLoad"></home-swiper>
 			<home-recommend :recommend="recommend" @recommendImgLoad="imageLoad"></home-recommend>
 			<tab-control @controlListClick="controlListClick" ref="tabControl1"></tab-control>
@@ -34,7 +36,6 @@
 	
 	import HomeSwiper from './homecomponents/HomeSwiper'
 	import HomeRecommend from './homecomponents/HomeRecommend'
-	import AnimationRefresh from './homecomponents/AnimationRefresh.vue'
 	
   import {getHomeMultidata,
 					getHomeGallery,
@@ -45,7 +46,6 @@
     name:'Home',
 		components:{
 			NavBar,
-			AnimationRefresh,
 			Scroll,
 			HomeSwiper,
 			HomeRecommend,
@@ -87,6 +87,7 @@
 		},
 		deactivated() {
 			this.saveY = this.$refs.scroll.getScrollY()
+			this.$bus.$off()
 		},
 		methods:{
 			//轮播图
@@ -107,13 +108,6 @@
 				getHomeGallery(style,pages,this.pageSize).then(res => {
 					this.goods[style].list.push(...res.list)
 					this.goods[style].page += 1
-				})
-			},
-			//下拉刷新后重新获取商品列表
-			getHomeGalleryFirst(style) {
-				this.goods[style].page = 1
-				getHomeGallery(style,1,this.pageSize).then(res => {
-					this.goods[style].list = res.list
 				})
 			},
 			//商品列表导航条控制数据与子组件的传递
@@ -142,12 +136,19 @@
 				this.getHomeGallery(this.index)
 				this.$refs.scroll.finishPullUp()
 			},
+			//下拉刷新后重新获取商品列表
+			getHomeGalleryFirst(style) {
+				this.goods[style].page = 1
+				getHomeGallery(style,1,this.pageSize).then(res => {
+					this.goods[style].list = res.list
+				})
+			},
+			//下拉刷新
 			pullingDown() {
-				this.isRefresh = true
+				this.isRefresh=true
 				setTimeout(() => {
-					this.isRefresh = false
-					this.$refs.scroll.refresh()
-				},2000)
+					this.isRefresh=false
+				},300)
 				this.getHomeGalleryFirst('pop')
 				this.getHomeGalleryFirst('new')
 				this.getHomeGalleryFirst('choice')
@@ -165,7 +166,6 @@
 				this.tabTop = this.$refs.tabControl1.$el.offsetTop
 			},
 			toDetail(index) {
-				console.log(index);
 				this.$router.push('/detail/' + index)
 			}
 		}
@@ -196,5 +196,8 @@
 		left: 0;
 		right: 0;
 		z-index: 9;
+	}
+	.loading {
+		text-align: center;
 	}
 </style>
