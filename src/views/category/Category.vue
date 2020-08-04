@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <h2>详情</h2>
+  <div class="cate">
   </div>
 </template>
 
 <script>
   export default {
-    name:'Category'
+    name:'Category',
+		components:{
+			
+		}
   }
 </script>
 
 <style>
+	
 </style>
