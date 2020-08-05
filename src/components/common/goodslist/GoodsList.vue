@@ -1,7 +1,7 @@
 <template>
 	<div class="goods">
 		<div v-for="value in goods" :key="value.num" class="goods_list">
-			<img :src="value.address" alt="" @load="goodsLoad" @click="toDetail(value.num)">
+			<img v-lazy="value.address" alt="" @load="goodsLoad" @click="toDetail(value.num)">
 			<div>{{value.name}}</div>
 		</div>
 	</div>

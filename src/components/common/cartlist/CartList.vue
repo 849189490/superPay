@@ -64,28 +64,29 @@
 		margin: 10px 10px;
 		border-radius: 15px;
 		background-color: #FFFFFF;
-		padding-bottom: 5px;
+		padding-bottom: 10px;
 	}
 	.shop {
 		height: 30px;
-		font-size: 16px;
+		font-size: 18px;
 		font-weight: 600;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 	}
 	.shop>img {
-		width: 16px;
-		height: 16px;
+		width: 18px;
+		height: 18px;
 	}
 	.choice {
-		width: 16px;
-		height: 16px;
-		margin-right: 10px;
+		width: 20px;
+		height: 20px;
+		margin-right: 15px;
+		margin-left: 15px;
 	}
 	.choice>img {
-		width: 16px;
-		height: 16px;
+		width: 20px;
+		height: 20px;
 	}
 	.name {
 		padding-left: 5px;
@@ -96,17 +97,19 @@
 		margin-top: 10px;
 	}
 	.ima {
-		width: 80px;
-		height: 80px;
+		width: 100px;
+		height: 100px;
 		overflow: hidden;
 	}
 	.ima>img {
-		width: 80px;
+		width: 100px;
 	}
 	.detail-right {
-		margin-left: 10px;
-		line-height: 25px;
-		font-size: 14px;
+		margin-left: 25px;
+		font-size: 16px;
+	}
+	.detail-right>div {
+		margin-top: 15px;
 	}
 	.detail-right>.center {
 		background-color: rgb(250,250,250);

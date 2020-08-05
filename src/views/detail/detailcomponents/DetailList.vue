@@ -14,11 +14,11 @@
 				type:Array,
 				default() {
 					return [
-						"http://localhost:3001/public/image/gallery/1.jpg",
-						"http://localhost:3001/public/image/gallery/2.jpg",
-						"http://localhost:3001/public/image/gallery/3.jpg",
-						"http://localhost:3001/public/image/gallery/4.jpg",
-						"http://localhost:3001/public/image/gallery/5.jpg",
+						"http://www.qigexiaoairen.cn:3000/public/image/gallery/1.jpg",
+						"http://www.qigexiaoairen.cn:3000/public/image/gallery/2.jpg",
+						"http://www.qigexiaoairen.cn:3000/public/image/gallery/3.jpg",
+						"http://www.qigexiaoairen.cn:3000/public/image/gallery/4.jpg",
+						"http://www.qigexiaoairen.cn:3000/public/image/gallery/5.jpg",
 					]
 				}
 			}

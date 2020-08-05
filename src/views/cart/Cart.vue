@@ -10,9 +10,10 @@
 			<cart-list></cart-list>
 			<cart-list></cart-list>
 			<cart-list></cart-list>
+			<cart-list></cart-list>
 		</scroll>
-		<van-submit-bar :price="29900" button-text="提交订单" @submit="onSubmit" class="submit">
-		  <van-checkbox v-model="checked">全选</van-checkbox>
+		<van-submit-bar :price="29900" button-text="提交订单" @submit="onSubmit" style="bottom: 49px;">
+			<van-checkbox v-model="checked">全选</van-checkbox>
 		</van-submit-bar>
   </div>
 </template>
@@ -65,7 +66,8 @@
 		
 	}
 	.submit {
-		position: fixed;
+		position: absolute;
+		margin-bottom: 49px;
 		bottom: 49px;
 	}
 </style>

@@ -2,7 +2,7 @@ import {request} from './request.js'
 
 export const getHomeMultidata = () => {
 	return request({
-		url:'/image/lunbo'
+		url:'/img/lunbo'
 	})
 }
 

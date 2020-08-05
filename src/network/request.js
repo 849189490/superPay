@@ -3,7 +3,7 @@ import axios from 'axios'
 export function request(options){
 	
 	const instance = axios.create({
-		baseURL: 'http://localhost:3001',
+		baseURL: 'http://www.qigexiaoairen.cn:3000',
 		timeout: 3000
 	})
 	

@@ -64,7 +64,7 @@
 				},
 				index:'pop',
 				isActive:false, //回到顶部箭头是否显示
-				pageSize:2, //每次请求的数据限制
+				pageSize:4, //每次请求的数据限制
 				tabTop:0, //计算tab-control的offsettop
 				tabIsActive:false, //吸顶效果出现
 				saveY:0,
